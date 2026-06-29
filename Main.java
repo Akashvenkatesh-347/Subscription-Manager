@@ -1,0 +1,28 @@
+import java.util.Scanner;
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        SubscriptionManager manager = new SubscriptionManager();
+        while (true) {
+            System.out.println("\n===== Subscription Manager =====");
+            System.out.println("1. Add Subscription");
+            System.out.println("2. View Subscriptions");
+            System.out.println("3. Exit");
+            System.out.print("Choose Option: ");
+            int choice = Integer.parseInt(scanner.nextLine());
+            switch (choice) {
+                case 1:
+                    manager.addSubscription();
+                    break;
+                case 2:
+                    manager.viewSubscriptions();
+                    break;
+                case 3:
+                    System.out.println("Exiting...");
+                    return;
+                default:
+                    System.out.println("Invalid Choice!");
+            }
+        }
+    }
+}
