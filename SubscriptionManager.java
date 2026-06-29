@@ -1,0 +1,45 @@
+import java.util.Scanner;
+import java.util.ArrayList;
+public class SubscriptionManager {
+    //Data Structure Creation
+    private ArrayList<Subscription> subscriptions;
+
+    //Scanner Object Creation
+    private Scanner scanner;
+
+    //Constructor
+    public SubscriptionManager(){
+        subscriptions = new ArrayList<>();
+        scanner = new Scanner(System.in);
+    }
+    //addSubscription() implementation
+    public void addSubscription(){
+        System.out.print("Enter Subscription Name: ");
+        String name = scanner.nextLine();
+        System.out.print("Enter Monthly Cost: ");
+        double monthlyCost = Double.parseDouble(scanner.nextLine());
+        System.out.print("Enter Billing Date: ");
+        int billingDate = Integer.parseInt(scanner.nextLine());
+        System.out.print("Enter Category: ");
+        String category = scanner.nextLine();
+        System.out.print("Auto Renew (true/false): ");
+        boolean autoRenew = Boolean.parseBoolean(scanner.nextLine());
+        Subscription subscription = new Subscription(name,monthlyCost,billingDate,category,autoRenew);
+        subscriptions.add(subscription);
+        System.out.println("Subscription Added Successfully");
+    }
+
+    //viewSubscription() implementation
+    public void viewSubscriptions(){
+        if(subscriptions.isEmpty()){
+            System.out.println("No Subscriptions Found");
+            return;
+        }
+        for(Subscription subscription:subscriptions){
+            System.out.println("Subscription");
+            System.out.println("-------------");
+            System.out.println(subscription);
+            System.out.println("\n");
+        }
+    }
+}
