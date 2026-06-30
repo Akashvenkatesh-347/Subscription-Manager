@@ -17,5 +17,6 @@ A Java console application to manage subscriptions.
 
 - Update Subscription
 - Delete Subscription
+- File Storage
 - PostgreSQL Integration
-- Spring Boot API
+- Spring Boot REST API
