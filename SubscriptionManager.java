@@ -5,7 +5,7 @@ public class SubscriptionManager {
     private ArrayList<Subscription> subscriptions;
 
     //Scanner Object Creation
-    private Scanner scanner;
+    Scanner scanner;
 
     //Constructor
     public SubscriptionManager(){
@@ -22,7 +22,7 @@ public class SubscriptionManager {
         }
         System.out.print("Enter Monthly Cost: ");
         double monthlyCost = Double.parseDouble(scanner.nextLine());
-        if(cost <= 0){
+        if(monthlyCost <= 0){
             System.out.println("Enter a valid cost");
             return;
         }
@@ -56,13 +56,13 @@ public class SubscriptionManager {
     }
 
     //searchSubscription() implementation
-    public static void searchSubscription() {
+    public void searchSubscription() {
         System.out.print("Enter Subscription Name: ");
         String searchName = scanner.nextLine();
         for (Subscription subscription : subscriptions) {
             if (subscription.getName().equalsIgnoreCase(searchName)) {
                 System.out.println("Name: " + subscription.getName());
-                System.out.println("Cost: " + subscription.getCost());
+                System.out.println("Cost: " + subscription.getMonthlyCost());
                 System.out.println("Category: " + subscription.getCategory());
                 System.out.println("Billing Date: " + subscription.getBillingDate());
                 return;
