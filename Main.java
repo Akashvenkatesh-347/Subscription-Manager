@@ -7,7 +7,8 @@ public class Main {
             System.out.println("\n===== Subscription Manager =====");
             System.out.println("1. Add Subscription");
             System.out.println("2. View Subscriptions");
-            System.out.println("3. Exit");
+            System.out.println("3. Search Subscription");
+            System.out.println("4. Exit");
             System.out.print("Choose Option: ");
             int choice = Integer.parseInt(scanner.nextLine());
             switch (choice) {
@@ -18,6 +19,9 @@ public class Main {
                     manager.viewSubscriptions();
                     break;
                 case 3:
+                    manager.searchSubscription();
+                    break;
+                case 4:
                     System.out.println("Exiting...");
                     return;
                 default:

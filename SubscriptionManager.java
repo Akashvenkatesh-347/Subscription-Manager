@@ -54,4 +54,21 @@ public class SubscriptionManager {
             System.out.println("\n");
         }
     }
+
+    //searchSubscription() implementation
+    public static void searchSubscription() {
+        System.out.print("Enter Subscription Name: ");
+        String searchName = scanner.nextLine();
+        for (Subscription subscription : subscriptions) {
+            if (subscription.getName().equalsIgnoreCase(searchName)) {
+                System.out.println("Name: " + subscription.getName());
+                System.out.println("Cost: " + subscription.getCost());
+                System.out.println("Category: " + subscription.getCategory());
+                System.out.println("Billing Date: " + subscription.getBillingDate());
+                return;
+            }
+        }
+
+        System.out.println("Subscription not found.");
+    }
 }
