@@ -16,10 +16,22 @@ public class SubscriptionManager {
     public void addSubscription(){
         System.out.print("Enter Subscription Name: ");
         String name = scanner.nextLine();
+        if(name == ""){
+            System.out.println("Enter a valid subscription");
+            return;
+        }
         System.out.print("Enter Monthly Cost: ");
         double monthlyCost = Double.parseDouble(scanner.nextLine());
+        if(cost <= 0){
+            System.out.println("Enter a valid cost");
+            return;
+        }
         System.out.print("Enter Billing Date: ");
         int billingDate = Integer.parseInt(scanner.nextLine());
+        if(billingDate < 1 || billingDate > 31){
+            System.out.println("Enter a valid date");
+            return;
+        }
         System.out.print("Enter Category: ");
         String category = scanner.nextLine();
         System.out.print("Auto Renew (true/false): ");
