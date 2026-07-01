@@ -16,7 +16,7 @@ public class SubscriptionManager {
     public void addSubscription(){
         System.out.print("Enter Subscription Name: ");
         String name = scanner.nextLine();
-        if(name == ""){
+        if(name.isBlank()){
             System.out.println("Enter a valid subscription");
             return;
         }
