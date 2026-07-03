@@ -70,4 +70,18 @@ public class SubscriptionManager {
 
         System.out.println("Subscription not found.");
     }
+
+    //deleteSubscription() implementation
+    public void deleteSubscription(){
+        System.out.println("Enter Subscription Name:");
+        String searchName = scanner.nextLine();
+        for(int i = 0;i < subscriptions.size();i++) {
+            if (subscriptions.get(i).getName().equalsIgnoreCase(searchName)) {
+                subscriptions.remove(i);
+                System.out.println("Subscription deleted successfully.");
+                return;
+            }
+        }
+        System.out.println("Subscription not found.");
+    }
 }
