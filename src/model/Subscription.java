@@ -1,3 +1,5 @@
+package model;
+import service.SubscriptionManager;
 import java.lang.*;
 public class Subscription {
     //Private Variables

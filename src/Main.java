@@ -1,3 +1,5 @@
+import model.Subscription;
+import service.SubscriptionManager;
 import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
@@ -10,8 +12,13 @@ public class Main {
             System.out.println("3. Search Subscription");
             System.out.println("4. Exit");
             System.out.print("Choose Option: ");
-            int choice = Integer.parseInt(scanner.nextLine());
-            switch (choice) {
+            try {
+                int choice = Integer.parseInt(scanner.nextLine());
+            }
+            catch(NumberFormatException e){
+                System.out.println("Invalid Input. Please enter a number.");
+            }
+            switch(choice) {
                 case 1:
                     manager.addSubscription();
                     break;

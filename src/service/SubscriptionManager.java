@@ -1,3 +1,5 @@
+package service;
+import model.Subscription;
 import java.util.Scanner;
 import java.util.ArrayList;
 public class SubscriptionManager {
