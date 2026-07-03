@@ -63,10 +63,7 @@ public class SubscriptionManager {
         String searchName = scanner.nextLine();
         for (Subscription subscription : subscriptions) {
             if (subscription.getName().equalsIgnoreCase(searchName)) {
-                System.out.println("Name: " + subscription.getName());
-                System.out.println("Cost: " + subscription.getMonthlyCost());
-                System.out.println("Category: " + subscription.getCategory());
-                System.out.println("Billing Date: " + subscription.getBillingDate());
+                System.out.println(subscription);
                 return;
             }
         }
