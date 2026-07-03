@@ -12,27 +12,27 @@ public class Main {
             System.out.println("3. Search Subscription");
             System.out.println("4. Exit");
             System.out.print("Choose Option: ");
-            try {
+            try{
                 int choice = Integer.parseInt(scanner.nextLine());
+                switch(choice){
+                    case 1:
+                        manager.addSubscription();
+                        break;
+                    case 2:
+                        manager.viewSubscriptions();
+                        break;
+                    case 3:
+                        manager.searchSubscription();
+                        break;
+                    case 4:
+                        System.out.println("Exiting...");
+                        return;
+                    default:
+                        System.out.println("Invalid Choice!");
+                }
             }
             catch(NumberFormatException e){
                 System.out.println("Invalid Input. Please enter a number.");
-            }
-            switch(choice) {
-                case 1:
-                    manager.addSubscription();
-                    break;
-                case 2:
-                    manager.viewSubscriptions();
-                    break;
-                case 3:
-                    manager.searchSubscription();
-                    break;
-                case 4:
-                    System.out.println("Exiting...");
-                    return;
-                default:
-                    System.out.println("Invalid Choice!");
             }
         }
     }
