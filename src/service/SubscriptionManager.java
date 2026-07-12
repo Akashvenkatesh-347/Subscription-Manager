@@ -1,8 +1,11 @@
 package service;
 import model.Subscription;
 import java.util.Scanner;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
-public class SubscriptionManager {
+public class SubscriptionManager{
     //Data Structure Creation
     private ArrayList<Subscription> subscriptions;
 
@@ -72,10 +75,10 @@ public class SubscriptionManager {
     }
 
     //deleteSubscription() implementation
-    public void deleteSubscription(){
+    public void deleteSubscription() {
         System.out.println("Enter Subscription Name:");
         String searchName = scanner.nextLine();
-        for(int i = 0;i < subscriptions.size();i++) {
+        for (int i = 0; i < subscriptions.size(); i++) {
             if (subscriptions.get(i).getName().equalsIgnoreCase(searchName)) {
                 subscriptions.remove(i);
                 System.out.println("Subscription deleted successfully.");
@@ -83,5 +86,24 @@ public class SubscriptionManager {
             }
         }
         System.out.println("Subscription not found.");
+    }
+    public void saveToFile() {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("subscriptions.txt"))) {
+
+            for (Subscription subscription : subscriptions){
+                writer.write(
+                        subscription.getName() + "," +
+                                subscription.getMonthlyCost() + "," +
+                                subscription.getBillingDate() + "," +
+                                subscription.getCategory() + "," +
+                                subscription.isAutoRenew()
+                );
+                writer.newLine();
+            }
+            System.out.println("Subscriptions saved successfully.");
+
+        } catch (IOException e) {
+            System.out.println("Error saving subscriptions.");
+        }
     }
 }

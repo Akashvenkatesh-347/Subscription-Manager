@@ -29,6 +29,7 @@ public class Main {
                         manager.deleteSubscription();
                         break;
                     case 5:
+                        manager.saveToFile();
                         System.out.println("Exiting...");
                         return;
                     default:
