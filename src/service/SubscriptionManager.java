@@ -3,7 +3,7 @@ import model.Subscription;
 import java.util.Scanner;
 import java.io.File;
 import java.io.FileReader;
-import jave.io.BufferedReader;
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
