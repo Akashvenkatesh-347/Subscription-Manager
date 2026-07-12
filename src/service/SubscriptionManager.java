@@ -1,6 +1,9 @@
 package service;
 import model.Subscription;
 import java.util.Scanner;
+import java.io.File;
+import java.io.FileReader;
+import jave.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -16,6 +19,7 @@ public class SubscriptionManager{
     public SubscriptionManager(){
         subscriptions = new ArrayList<>();
         scanner = new Scanner(System.in);
+        loadFromFile();
     }
     //addSubscription() implementation
     public void addSubscription(){
@@ -87,6 +91,7 @@ public class SubscriptionManager{
         }
         System.out.println("Subscription not found.");
     }
+
     public void saveToFile() {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter("subscriptions.txt"))) {
 
@@ -104,6 +109,34 @@ public class SubscriptionManager{
 
         } catch (IOException e) {
             System.out.println("Error saving subscriptions.");
+        }
+    }
+
+    public void loadFromFile() {
+        File file = new File("subscriptions.txt");
+        if (!file.exists()) {
+            return;
+        }
+        try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                String[] data = line.split(",");
+                String name = data[0];
+                double monthlyCost = Double.parseDouble(data[1]);
+                int billingDate = Integer.parseInt(data[2]);
+                String category = data[3];
+                boolean autoRenew = Boolean.parseBoolean(data[4]);
+                Subscription subscription = new Subscription(
+                        name,
+                        monthlyCost,
+                        billingDate,
+                        category,
+                        autoRenew
+                );
+                subscriptions.add(subscription);
+            }
+        } catch (IOException e) {
+            System.out.println("Error loading subscriptions.");
         }
     }
 }
