@@ -6,17 +6,22 @@ A Java console application to manage subscriptions.
 
 - Add Subscription
 - View Subscriptions
+- Search Subscription
+- Delete Subscription
+- Save To File
+- Load From File
+- Input Validation
+- Exception Handling
 
-## Tech Stack
+## Technologies Used
 
 - Java 25
-- ArrayList
-- OOP Concepts
+- Collections Framework
+- File Handling
+- Git
+- GitHub
 
 ## Future Roadmap
 
-- Update Subscription
-- Delete Subscription
-- File Storage
 - PostgreSQL Integration
 - Spring Boot REST API
