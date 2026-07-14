@@ -30,14 +30,28 @@ public class SubscriptionManager{
             return;
         }
         System.out.print("Enter Monthly Cost: ");
-        double monthlyCost = Double.parseDouble(scanner.nextLine());
-        if(monthlyCost <= 0){
+        double monthlyCost;
+        try {
+            monthlyCost = Double.parseDouble(scanner.nextLine());
+        } catch (NumberFormatException e) {
+            System.out.println("Invalid Cost.");
+            System.out.println("Please enter a valid number.");
+            return;
+        }
+        if (monthlyCost <= 0) {
             System.out.println("Enter a valid cost");
             return;
         }
         System.out.print("Enter Billing Date: ");
-        int billingDate = Integer.parseInt(scanner.nextLine());
-        if(billingDate < 1 || billingDate > 31){
+        int billingDate;
+        try {
+            billingDate = Integer.parseInt(scanner.nextLine());
+        } catch (NumberFormatException e) {
+            System.out.println("Invalid Billing Date.");
+            System.out.println("Please enter a valid number.");
+            return;
+        }
+        if (billingDate < 1 || billingDate > 31) {
             System.out.println("Enter a valid date");
             return;
         }
