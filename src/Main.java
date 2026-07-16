@@ -10,8 +10,9 @@ public class Main {
             System.out.println("1. Add Subscription");
             System.out.println("2. View Subscriptions");
             System.out.println("3. Search Subscription");
-            System.out.println("4. Delete Subscription");
-            System.out.println("5. Exit");
+            System.out.println("4. Update Subscription");
+            System.out.println("5. Delete Subscription");
+            System.out.println("6. Exit");
             System.out.print("Choose Option: ");
             try{
                 int choice = Integer.parseInt(scanner.nextLine());
@@ -26,9 +27,12 @@ public class Main {
                         manager.searchSubscription();
                         break;
                     case 4:
-                        manager.deleteSubscription();
+                        manager.updateSubscription();
                         break;
                     case 5:
+                        manager.deleteSubscription();
+                        break;
+                    case 6:
                         manager.saveToFile();
                         System.out.println("Exiting...");
                         return;

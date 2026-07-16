@@ -92,6 +92,36 @@ public class SubscriptionManager{
         System.out.println("Subscription not found.");
     }
 
+    //updateSubscription() implementation
+    public void updateSubscription(){
+        System.out.println("Enter Subscription Name:");
+        String subscriptionName = scanner.nextLine();
+        for (Subscription subscription : subscriptions) {
+            if (subscription.getName().equalsIgnoreCase(subscriptionName)) {
+                System.out.println("Current Subscription:");
+                System.out.println(subscription);
+                System.out.print("Enter New Monthly Cost: ");
+                double newMonthlyCost;
+                try {
+                    newMonthlyCost = Double.parseDouble(scanner.nextLine());
+                } catch (NumberFormatException e) {
+                    System.out.println("Invalid Cost.");
+                    System.out.println("Please enter a valid number.");
+                    return;
+                }
+                if (newMonthlyCost <= 0) {
+                    System.out.println("Enter a valid cost");
+                    return;
+                }
+                subscription.setMonthlyCost(newMonthlyCost);
+                saveToFile();
+                System.out.println("Updated Successfully");
+                return;
+            }
+        }
+        System.out.println("Subscription not found.");
+    }
+
     //deleteSubscription() implementation
     public void deleteSubscription() {
         System.out.println("Enter Subscription Name:");
