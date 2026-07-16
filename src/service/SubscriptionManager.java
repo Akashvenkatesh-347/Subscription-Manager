@@ -78,62 +78,66 @@ public class SubscriptionManager{
         }
     }
 
+    private Subscription findSubscriptionByName(String name) {
+        for(Subscription subscription : subscriptions) {
+            if (subscription.getName().equalsIgnoreCase(name)) {
+                return subscription;
+            }
+        }
+        return null;
+    }
+
     //searchSubscription() implementation
     public void searchSubscription() {
         System.out.print("Enter Subscription Name: ");
         String searchName = scanner.nextLine();
-        for (Subscription subscription : subscriptions) {
-            if (subscription.getName().equalsIgnoreCase(searchName)) {
-                System.out.println(subscription);
-                return;
-            }
+        Subscription subscription = findSubscriptionByName(searchName);
+        if (subscription != null) {
+            System.out.println(subscription);
+        } else {
+            System.out.println("Subscription not found.");
         }
-
-        System.out.println("Subscription not found.");
     }
 
     //updateSubscription() implementation
     public void updateSubscription(){
-        System.out.println("Enter Subscription Name:");
+        System.out.print("Enter Subscription Name: ");
         String subscriptionName = scanner.nextLine();
-        for (Subscription subscription : subscriptions) {
-            if (subscription.getName().equalsIgnoreCase(subscriptionName)) {
-                System.out.println("Current Subscription:");
-                System.out.println(subscription);
-                System.out.print("Enter New Monthly Cost: ");
-                double newMonthlyCost;
-                try {
-                    newMonthlyCost = Double.parseDouble(scanner.nextLine());
-                } catch (NumberFormatException e) {
-                    System.out.println("Invalid Cost.");
-                    System.out.println("Please enter a valid number.");
-                    return;
-                }
-                if (newMonthlyCost <= 0) {
-                    System.out.println("Enter a valid cost");
-                    return;
-                }
-                subscription.setMonthlyCost(newMonthlyCost);
-                saveToFile();
-                System.out.println("Updated Successfully");
-                return;
-            }
+        Subscription subscription = findSubscriptionByName(subscriptionName);
+        if (subscription == null) {
+            System.out.println("Subscription not found.");
+            return;
         }
-        System.out.println("Subscription not found.");
+        System.out.println("Current Subscription:");
+        System.out.println(subscription);
+        System.out.print("Enter New Monthly Cost: ");
+        double newMonthlyCost;
+        try {
+            newMonthlyCost = Double.parseDouble(scanner.nextLine());
+        } catch (NumberFormatException e) {
+            System.out.println("Invalid Cost.");
+            System.out.println("Please enter a valid number.");
+            return;
+        }
+        if (newMonthlyCost <= 0) {
+            System.out.println("Enter a valid cost");
+            return;
+        }
+        subscription.setMonthlyCost(newMonthlyCost);
+        System.out.println("Updated Successfully");
     }
 
     //deleteSubscription() implementation
     public void deleteSubscription() {
-        System.out.println("Enter Subscription Name:");
+        System.out.print("Enter Subscription Name: ");
         String searchName = scanner.nextLine();
-        for (int i = 0; i < subscriptions.size(); i++) {
-            if (subscriptions.get(i).getName().equalsIgnoreCase(searchName)) {
-                subscriptions.remove(i);
-                System.out.println("Subscription deleted successfully.");
-                return;
-            }
+        Subscription subscription = findSubscriptionByName(searchName);
+        if (subscription != null) {
+            subscriptions.remove(subscription);
+            System.out.println("Subscription deleted successfully.");
+        } else {
+            System.out.println("Subscription not found.");
         }
-        System.out.println("Subscription not found.");
     }
 
     public void saveToFile() {
