@@ -140,6 +140,23 @@ public class SubscriptionManager{
         }
     }
 
+    //showStatisticts() implementation
+    public void showStatistics() {
+        if (subscriptions.isEmpty()) {
+            System.out.println("No Subscriptions Found");
+            return;
+        }
+        int totalSubscriptions = subscriptions.size();
+        double totalMonthlyCost = 0;
+        for (Subscription subscription : subscriptions) {
+            totalMonthlyCost += subscription.getMonthlyCost();
+        }
+        double averageMonthlyCost = totalMonthlyCost / totalSubscriptions;
+        System.out.println("Total Subscriptions: " + totalSubscriptions);
+        System.out.println("Total Monthly Cost: Rs." + totalMonthlyCost);
+        System.out.printf("Average Monthly Cost: Rs.%.2f%n", averageMonthlyCost);
+    }
+
     public void saveToFile() {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter("subscriptions.txt"))) {
 
