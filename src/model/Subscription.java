@@ -51,6 +51,7 @@ public class Subscription {
     }
 
     //toString() function
+    @Override
     public String toString(){
         return "Name: "+name+
                 "\nMonthly Cost: "+monthlyCost+
