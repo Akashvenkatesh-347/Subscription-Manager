@@ -186,19 +186,27 @@ public class SubscriptionManager{
             String line;
             while ((line = reader.readLine()) != null) {
                 String[] data = line.split(",");
-                String name = data[0];
-                double monthlyCost = Double.parseDouble(data[1]);
-                int billingDate = Integer.parseInt(data[2]);
-                String category = data[3];
-                boolean autoRenew = Boolean.parseBoolean(data[4]);
-                Subscription subscription = new Subscription(
-                        name,
-                        monthlyCost,
-                        billingDate,
-                        category,
-                        autoRenew
-                );
-                subscriptions.add(subscription);
+                if (data.length != 5) {
+                    System.out.println("Skipping invalid record: " + line);
+                    continue;
+                }
+                try {
+                    String name = data[0];
+                    double monthlyCost = Double.parseDouble(data[1]);
+                    int billingDate = Integer.parseInt(data[2]);
+                    String category = data[3];
+                    boolean autoRenew = Boolean.parseBoolean(data[4]);
+                    Subscription subscription = new Subscription(
+                            name,
+                            monthlyCost,
+                            billingDate,
+                            category,
+                            autoRenew
+                    );
+                    subscriptions.add(subscription);
+                } catch (NumberFormatException e) {
+                    System.out.println("Skipping invalid record: " + line);
+                }
             }
         } catch (IOException e) {
             System.out.println("Error loading subscriptions.");
