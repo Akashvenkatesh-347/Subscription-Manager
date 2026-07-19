@@ -29,6 +29,11 @@ public class SubscriptionManager{
             System.out.println("Enter a valid subscription");
             return;
         }
+        Subscription existing = findSubscriptionByName(name);
+        if (existing != null) {
+            System.out.println("Subscription already exists.");
+            return;
+        }
         System.out.print("Enter Monthly Cost: ");
         double monthlyCost;
         try {
