@@ -115,20 +115,77 @@ public class SubscriptionManager{
         }
         System.out.println("Current Subscription:");
         System.out.println(subscription);
-        System.out.print("Enter New Monthly Cost: ");
-        double newMonthlyCost;
+        System.out.println("\nSelect field to update:");
+        System.out.println("1. Name");
+        System.out.println("2. Monthly Cost");
+        System.out.println("3. Billing Date");
+        System.out.println("4. Category");
+        System.out.println("5. Auto Renew");
+        System.out.print("Choose option: ");
+        int choice;
         try {
-            newMonthlyCost = Double.parseDouble(scanner.nextLine());
+            choice = Integer.parseInt(scanner.nextLine());
         } catch (NumberFormatException e) {
-            System.out.println("Invalid Cost.");
-            System.out.println("Please enter a valid number.");
+            System.out.println("Invalid choice.");
             return;
         }
-        if (newMonthlyCost <= 0) {
-            System.out.println("Enter a valid cost");
-            return;
+        switch (choice) {
+            case 1:
+                System.out.print("Enter New Name: ");
+                String newName = scanner.nextLine();
+                if (newName.isBlank()) {
+                    System.out.println("Invalid name.");
+                    return;
+                }
+                Subscription existing = findSubscriptionByName(newName);
+                if (existing != null && existing != subscription) {
+                    System.out.println("Subscription already exists.");
+                    return;
+                }
+                subscription.setName(newName);
+                break;
+            case 2:
+                System.out.print("Enter New Monthly Cost: ");
+                try {
+                    double newCost = Double.parseDouble(scanner.nextLine());
+                    if (newCost <= 0) {
+                        System.out.println("Enter a valid cost.");
+                        return;
+                    }
+                    subscription.setMonthlyCost(newCost);
+                } catch (NumberFormatException e) {
+                    System.out.println("Invalid cost.");
+                    return;
+                }
+                break;
+            case 3:
+                System.out.print("Enter New Billing Date: ");
+                try {
+                    int newDate = Integer.parseInt(scanner.nextLine());
+                    if (newDate < 1 || newDate > 31) {
+                        System.out.println("Enter a valid billing date.");
+                        return;
+                    }
+                    subscription.setBillingDate(newDate);
+                } catch (NumberFormatException e) {
+                    System.out.println("Invalid billing date.");
+                    return;
+                }
+                break;
+            case 4:
+                System.out.print("Enter New Category: ");
+                String newCategory = scanner.nextLine();
+                subscription.setCategory(newCategory);
+                break;
+            case 5:
+                System.out.print("Enter Auto Renew (true/false): ");
+                boolean autoRenew = Boolean.parseBoolean(scanner.nextLine());
+                subscription.setAutoRenew(autoRenew);
+                break;
+            default:
+                System.out.println("Invalid choice.");
+                return;
         }
-        subscription.setMonthlyCost(newMonthlyCost);
         System.out.println("Updated Successfully");
     }
 
