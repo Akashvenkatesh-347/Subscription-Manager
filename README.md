@@ -13,6 +13,21 @@ A Java console application to manage subscriptions.
 - Input Validation
 - Exception Handling
 
+
+## Project Structure
+Subscription Manager
+│
+├── model
+│     └── Subscription.java
+│
+├── service
+│     └── SubscriptionManager.java
+│
+├── storage
+│     └── File Storage (Current)
+│
+└── Main.java
+
 ## Technologies Used
 
 - Java 25
@@ -23,5 +38,8 @@ A Java console application to manage subscriptions.
 
 ## Future Roadmap
 
-- PostgreSQL Integration
-- Spring Boot REST API
+- PostgreSQL
+- JDBC
+- Spring Boot 
+- REST APIs
+- Docker
